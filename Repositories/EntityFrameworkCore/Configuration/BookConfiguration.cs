@@ -1,10 +1,10 @@
-﻿using BookStoreWebApi.Models;
+﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BookStoreWebApi.Repositories.Config
+namespace Repositories.EntityFrameworkCore.Configuration
 {
-    public class BookConfig : IEntityTypeConfiguration<Book>
+    public class BookConfiguration : IEntityTypeConfiguration<Book>
     {
         public void Configure(EntityTypeBuilder<Book> builder)
         {

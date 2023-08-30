@@ -1,8 +1,8 @@
-﻿using BookStoreWebApi.Models;
-using BookStoreWebApi.Repositories.Context;
+﻿using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Repositories.EntityFrameworkCore;
 
 namespace BookStoreWebApi.Controllers
 {
