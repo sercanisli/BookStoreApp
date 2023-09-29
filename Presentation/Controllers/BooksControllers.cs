@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 
-namespace BookStoreWebApi.Controllers
+namespace Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/books")]
     public class BooksController : ControllerBase
     {
         private readonly IServiceManager _manager;
@@ -74,7 +74,7 @@ namespace BookStoreWebApi.Controllers
         {
             try
             {
-                if(book == null)
+                if (book == null)
                 {
                     return BadRequest();
                 }
@@ -93,7 +93,7 @@ namespace BookStoreWebApi.Controllers
         {
             try
             {
-                _manager.BookService.DeleteOneBook(id,false);
+                _manager.BookService.DeleteOneBook(id, false);
                 return NoContent();
             }
             catch (Exception e)
@@ -114,7 +114,7 @@ namespace BookStoreWebApi.Controllers
                     return NotFound();
                 }
                 bookPatch.ApplyTo(entitiy);
-                _manager.BookService.UpdateOneBook(id,entitiy,true);
+                _manager.BookService.UpdateOneBook(id, entitiy, true);
                 return NoContent();
             }
             catch (Exception e)
