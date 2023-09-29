@@ -1,8 +1,7 @@
 ﻿using Entities.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Repositories.EntityFrameworkCore;
+using Services.Contracts;
 
 namespace BookStoreWebApi.Controllers
 {
@@ -10,11 +9,11 @@ namespace BookStoreWebApi.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly RepositoryContext _context;
+        private readonly IServiceManager _manager;
 
-        public BooksController(RepositoryContext context)
+        public BooksController(IServiceManager manager)
         {
-            _context = context;
+            _manager = manager;
         }
 
         [HttpGet]
@@ -22,7 +21,7 @@ namespace BookStoreWebApi.Controllers
         {
             try
             {
-                var books = _context.Books.ToList();
+                var books = _manager.BookService.GetAllBooks(false);
                 return Ok(books);
             }
             catch (Exception e)
@@ -31,12 +30,14 @@ namespace BookStoreWebApi.Controllers
             }
 
         }
+
         [HttpGet("{id:int}")]
         public IActionResult GetOneBook([FromRoute(Name = "id")] int id)
         {
-            var book = _context.Books.Where(b => b.Id == id).SingleOrDefault();
             try
             {
+                var book = _manager.BookService.GetOneBookById(id, false);
+
                 if (book == null)
                 {
                     return NotFound();
@@ -51,7 +52,7 @@ namespace BookStoreWebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreareOneBook([FromBody] Book book)
+        public IActionResult CreateOneBook([FromBody] Book book)
         {
             try
             {
@@ -59,8 +60,7 @@ namespace BookStoreWebApi.Controllers
                 {
                     return BadRequest(); //400
                 }
-                _context.Books.Add(book);
-                _context.SaveChanges();
+                _manager.BookService.CreateOneBook(book);
                 return StatusCode(201, book);
             }
             catch (Exception e)
@@ -74,20 +74,13 @@ namespace BookStoreWebApi.Controllers
         {
             try
             {
-                var entity = _context.Books.Where(b => b.Id == id).SingleOrDefault();
-                if (entity == null)
-                {
-                    return NotFound();
-                }
-                //id check
-                if (id != book.Id)
+                if(book == null)
                 {
                     return BadRequest();
                 }
-                entity.Title = book.Title;
-                entity.Price = book.Price;
-                _context.SaveChanges();
-                return StatusCode(200, book);
+
+                _manager.BookService.UpdateOneBook(id, book, true);
+                return NoContent();
             }
             catch (Exception e)
             {
@@ -100,17 +93,7 @@ namespace BookStoreWebApi.Controllers
         {
             try
             {
-                var entity = _context.Books.Where(b => b.Id == id).SingleOrDefault();
-                if (entity == null)
-                {
-                    return NotFound(new
-                    {
-                        message = $"Book with id:{id} could not found",
-                        statusCode = 404
-                    });
-                }
-                _context.Books.Remove(entity);
-                _context.SaveChanges();
+                _manager.BookService.DeleteOneBook(id,false);
                 return NoContent();
             }
             catch (Exception e)
@@ -125,13 +108,13 @@ namespace BookStoreWebApi.Controllers
         {
             try
             {
-                var entitiy = _context.Books.Where(b => b.Id == id).SingleOrDefault();
+                var entitiy = _manager.BookService.GetOneBookById(id, true);
                 if (entitiy == null)
                 {
                     return NotFound();
                 }
                 bookPatch.ApplyTo(entitiy);
-                _context.SaveChanges();
+                _manager.BookService.UpdateOneBook(id,entitiy,true);
                 return NoContent();
             }
             catch (Exception e)
