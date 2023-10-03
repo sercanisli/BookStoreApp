@@ -10,6 +10,7 @@ namespace BookStoreWebApi.Utilities.AutoMapper
         {
             CreateMap<BookDtoForUpdate, Book>().ReverseMap();
             CreateMap<Book,BookDto>().ReverseMap();
+            CreateMap<BookDtoForInsertion, Book>().ReverseMap();
         }
     }
 }
