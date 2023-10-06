@@ -126,3 +126,15 @@
 2023-10-04 17:12:25.8749 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
 2023-10-04 17:12:25.8994 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
 2023-10-04 17:12:25.9235 Info Configuration initialized.
+2023-10-05 01:29:26.4558 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-05 01:29:26.5806 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
+2023-10-05 01:29:26.6422 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
+2023-10-05 01:29:26.8029 Info Configuration initialized.
+2023-10-05 01:34:40.5097 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-05 01:34:41.0006 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
+2023-10-05 01:34:41.1100 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
+2023-10-05 01:34:41.1926 Info Configuration initialized.
+2023-10-05 02:02:02.4675 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-05 02:02:02.6385 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
+2023-10-05 02:02:02.7005 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
+2023-10-05 02:02:02.7610 Info Configuration initialized.
