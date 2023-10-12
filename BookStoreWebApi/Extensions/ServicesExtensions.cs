@@ -1,4 +1,6 @@
 ﻿using Entities.DataTransferObjects;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Presentation.ActionFilters;
 using Repositories.Contracts;
@@ -48,6 +50,33 @@ namespace BookStoreWebApi.Extensions
         public static void ConfigureDahaShaper(this IServiceCollection services)
         {
             services.AddScoped<IDataShaper<BookDto>, DataShaper<BookDto>>();
+        }
+
+        public static void AddCustomMediaTypes(this IServiceCollection services)
+        {
+            services.Configure<MvcOptions>(config =>
+            {
+                var systemTextJsonOutputFormatter = config
+                .OutputFormatters
+                .OfType<SystemTextJsonOutputFormatter>()?.FirstOrDefault();
+
+                if(systemTextJsonOutputFormatter != null)
+                {
+                    systemTextJsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.bookstore.hateos+json");
+
+                }
+
+                var xmlOutputFormatter = config
+                .OutputFormatters
+                .OfType<XmlDataContractSerializerInputFormatter>()?.FirstOrDefault();
+
+                if(xmlOutputFormatter != null)
+                {
+                    xmlOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.bookstore.hateos+xml");
+                }
+            });
         }
     }
 }
