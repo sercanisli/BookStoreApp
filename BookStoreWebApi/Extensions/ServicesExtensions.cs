@@ -32,6 +32,7 @@ namespace BookStoreWebApi.Extensions
         {
             services.AddScoped<ValidationFilterAttribute>();
             services.AddSingleton<LogFilterAttribute>();
+            services.AddScoped<ValidateMediaTypeAttribute>();
         }
 
         public static void ConfigureCors(this IServiceCollection services)
@@ -63,18 +64,18 @@ namespace BookStoreWebApi.Extensions
                 if(systemTextJsonOutputFormatter != null)
                 {
                     systemTextJsonOutputFormatter.SupportedMediaTypes
-                    .Add("application/vnd.bookstore.hateos+json");
+                    .Add("application/vnd.bookstore.hateoas+json");
 
                 }
 
                 var xmlOutputFormatter = config
                 .OutputFormatters
-                .OfType<XmlDataContractSerializerInputFormatter>()?.FirstOrDefault();
+                .OfType<XmlDataContractSerializerOutputFormatter>()?.FirstOrDefault();
 
                 if(xmlOutputFormatter != null)
                 {
                     xmlOutputFormatter.SupportedMediaTypes
-                    .Add("application/vnd.bookstore.hateos+xml");
+                    .Add("application/vnd.bookstore.hateoas+xml");
                 }
             });
         }

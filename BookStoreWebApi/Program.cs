@@ -1,7 +1,7 @@
 using BookStoreWebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
-using Presentation.ActionFilters;
+using Services.Concrete;
 using Services.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,10 +13,10 @@ builder.Services.AddControllers(config =>
     config.RespectBrowserAcceptHeader = true;
     config.ReturnHttpNotAcceptable = true;
 })
-    .AddCustomCsvFormatter()
     .AddXmlDataContractSerializerFormatters()
-    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
-    .AddNewtonsoftJson();
+    .AddCustomCsvFormatter()
+    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
+    //.AddNewtonsoftJson();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -34,6 +34,7 @@ builder.Services.ConfigureActionFilters();
 builder.Services.ConfigureCors();
 builder.Services.ConfigureDahaShaper();
 builder.Services.AddCustomMediaTypes();
+builder.Services.AddScoped<IBookLinks, BookLinks>();
 
 var app = builder.Build();
 
