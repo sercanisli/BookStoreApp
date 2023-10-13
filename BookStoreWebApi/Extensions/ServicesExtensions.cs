@@ -66,6 +66,8 @@ namespace BookStoreWebApi.Extensions
                     systemTextJsonOutputFormatter.SupportedMediaTypes
                     .Add("application/vnd.bookstore.hateoas+json");
 
+                    systemTextJsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.bookstore.apiroot+json");
                 }
 
                 var xmlOutputFormatter = config
@@ -76,6 +78,9 @@ namespace BookStoreWebApi.Extensions
                 {
                     xmlOutputFormatter.SupportedMediaTypes
                     .Add("application/vnd.bookstore.hateoas+xml");
+
+                    xmlOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.bookstore.apiroot+xml");
                 }
             });
         }
