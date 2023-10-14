@@ -1,5 +1,6 @@
 ﻿using Entities.DataTransferObjects;
 using Entities.RequestFeatures;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
@@ -12,6 +13,8 @@ namespace Presentation.Controllers
     [ServiceFilter(typeof(LogFilterAttribute))]
     [ApiController]
     [Route("api/books")]
+    [ResponseCache(CacheProfileName ="5mins")]
+    //[HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 80)]
     public class BooksController : ControllerBase
     {
         private readonly IServiceManager _manager;
@@ -79,7 +82,7 @@ namespace Presentation.Controllers
                 return BadRequest();
             }
 
-            var result = await _manager.BookService.GetOneBookForPatchAsync(id, false); //Tuple
+            var result = await _manager.BookService.GetOneBookForPatchAsync(id, false); 
 
             bookPatch.ApplyTo(result.bookDtoForUpdate, ModelState);
 
