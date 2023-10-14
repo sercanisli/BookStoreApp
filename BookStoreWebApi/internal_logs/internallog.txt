@@ -303,3 +303,7 @@
 2023-10-14 16:48:30.0868 Info Configuration initialized.
 2023-10-14 16:54:32.0335 Info AppDomain Shutting down. LogFactory closing...
 2023-10-14 16:54:32.0779 Info LogFactory has been closed.
+2023-10-14 17:17:44.0751 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-14 17:17:44.1635 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
+2023-10-14 17:17:44.2395 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
+2023-10-14 17:17:44.3492 Info Configuration initialized.
