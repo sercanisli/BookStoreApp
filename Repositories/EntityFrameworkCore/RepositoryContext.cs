@@ -1,10 +1,11 @@
 ﻿using Entities.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repositories.EntityFrameworkCore.Configuration;
 
 namespace Repositories.EntityFrameworkCore
 {
-    public class RepositoryContext:DbContext
+    public class RepositoryContext:IdentityDbContext<User>
     {
         public RepositoryContext(DbContextOptions options) : base(options)
         {
@@ -15,6 +16,7 @@ namespace Repositories.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new BookConfiguration());
         }
     }
