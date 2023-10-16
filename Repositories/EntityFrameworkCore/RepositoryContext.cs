@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repositories.EntityFrameworkCore.Configuration;
+using System.Reflection;
 
 namespace Repositories.EntityFrameworkCore
 {
@@ -17,7 +18,6 @@ namespace Repositories.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new BookConfiguration());
-        }
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());        }
     }
 }

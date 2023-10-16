@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories.EntityFrameworkCore;
 
@@ -11,9 +12,10 @@ using Repositories.EntityFrameworkCore;
 namespace BookStoreWebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20231016160212_CreatingIdentityTables")]
+    partial class CreatingIdentityTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,29 +202,6 @@ namespace BookStoreWebApi.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "ead82646-2be8-482c-bd9f-57588c6e696c",
-                            ConcurrencyStamp = "031a7b20-e59e-4552-9c78-999c589847e4",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "7babc514-ef3a-4015-90e3-96fc6f921e66",
-                            ConcurrencyStamp = "6c0a53c2-873a-47d6-9d6b-55d58966f8e9",
-                            Name = "Editor",
-                            NormalizedName = "EDITOR"
-                        },
-                        new
-                        {
-                            Id = "38dbb5e3-76a6-4110-9aee-c8e2e63b5744",
-                            ConcurrencyStamp = "ba4b6fb3-7437-4706-bfab-82fc3adf9489",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
