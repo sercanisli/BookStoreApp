@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
 using Services.Contracts;
+using System.Linq.Dynamic.Core.Tokenizer;
 
 namespace Presentation.Controllers
 {
@@ -31,6 +32,20 @@ namespace Presentation.Controllers
                 return BadRequest(ModelState);
             }
             return StatusCode(201);
+        }
+
+        [HttpPost("login")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
+        {
+            if(!await _manager.AuthenticationService.ValidateUser(user))
+            {
+                return Unauthorized(); //401
+            }
+            return Ok(new
+            {
+                Token = await _manager.AuthenticationService.CreateToken()
+            });
         }
     }
 }
