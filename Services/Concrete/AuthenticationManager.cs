@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
+using Entities.Exceptions;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -73,6 +74,20 @@ namespace Services.Concrete
                 _logger.LogWarning($"{nameof(ValidateUser)} : Authentication failed. Wrong username or password");
             }
             return result;
+        }
+
+        public async Task<TokenDto> RefreshToken(TokenDto tokenDto)
+        {
+            var principal = GetPrincipalFromExpiredToken(tokenDto.AccessToken);
+            var user = await _userManager.FindByNameAsync(principal.Identity.Name);
+
+            if(user == null || user.RefreshToken != tokenDto.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
+            {
+                throw new RefreshTokenBadRequestException();
+            }
+
+            _user = user;
+            return await CreateToken(populateExp: false);
         }
 
         private SigningCredentials GetSigninCredentials()
@@ -153,6 +168,6 @@ namespace Services.Concrete
             return principal;
         }
 
-
+        
     }
 }
