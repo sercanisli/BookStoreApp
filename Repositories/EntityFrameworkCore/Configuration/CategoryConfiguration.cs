@@ -30,7 +30,7 @@ namespace Repositories.EntityFrameworkCore.Configuration
                 );
 
             builder.HasIndex(indexExpression: c=>c.CategoryName,name:"UK_Categories_Name").IsUnique();
-            builder.HasMany(c => c.Books);
+            //builder.HasMany(c => c.Books);
         }
     }
 }

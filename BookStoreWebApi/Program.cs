@@ -1,6 +1,7 @@
 using AspNetCoreRateLimit;
 using BookStoreWebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using NLog;
 using Services.Concrete;
 using Services.Contracts;
@@ -17,8 +18,10 @@ builder.Services.AddControllers(config =>
 })
     .AddXmlDataContractSerializerFormatters()
     .AddCustomCsvFormatter()
-    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
-    //.AddNewtonsoftJson();
+    .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
+    .AddNewtonsoftJson(options => 
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+    );
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
