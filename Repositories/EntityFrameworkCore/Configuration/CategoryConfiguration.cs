@@ -8,7 +8,7 @@ namespace Repositories.EntityFrameworkCore.Configuration
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.HasKey(c => c.CategoryId);
+            builder.ToTable("Categories").HasKey(c => c.CategoryId);
             builder.Property(c => c.CategoryName).IsRequired();
 
             builder.HasData(
@@ -28,6 +28,9 @@ namespace Repositories.EntityFrameworkCore.Configuration
                     CategoryName = "Database Management Systems"
                 }
                 );
+
+            builder.HasIndex(indexExpression: c=>c.CategoryName,name:"UK_Categories_Name").IsUnique();
+            builder.HasMany(c => c.Books);
         }
     }
 }
