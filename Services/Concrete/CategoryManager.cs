@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
+using Entities.Exceptions;
 using Entities.Models;
 using Repositories.Contracts;
 using Services.Contracts;
@@ -41,7 +42,12 @@ namespace Services.Concrete
 
         public async Task<Category> GetOneCategoryByIdAsync(int id, bool trackChanges)
         {
-            return await _manager.Category.GetOneCategoryByIdAsync(id, trackChanges);
+            var category = await _manager.Category.GetOneCategoryByIdAsync(id, trackChanges);
+            if(category == null)
+            {
+                throw new CategoryNotFoundException(id);
+            }
+            return category;
         }
 
         public async Task UpdateOneCategoryAsync(int id, CategoryDtoForUpdate categoryDtoForUpdate, bool trackChanges)
