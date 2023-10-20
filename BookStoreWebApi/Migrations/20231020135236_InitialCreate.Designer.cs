@@ -12,8 +12,8 @@ using Repositories.EntityFrameworkCore;
 namespace BookStoreWebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20231019112942_AddRefreshTokenFields")]
-    partial class AddRefreshTokenFields
+    [Migration("20231020135236_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,6 +103,40 @@ namespace BookStoreWebApi.Migrations
                             Id = 10,
                             Price = 10000m,
                             Title = "Nutuk"
+                        });
+                });
+
+            modelBuilder.Entity("Entities.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Computer Science"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Network"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Database Management Systems"
                         });
                 });
 
@@ -212,22 +246,22 @@ namespace BookStoreWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bb83bf78-8881-4af2-8e58-6f76a9088f01",
-                            ConcurrencyStamp = "c8737792-18ba-4f9e-9c80-864bdd8effa8",
+                            Id = "d41bb80f-cbbc-4ada-8f58-4fbcd52431a1",
+                            ConcurrencyStamp = "500b64ee-016d-44c9-abbf-d639f4579091",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "a3eaf9ad-085d-43ee-9071-0ef21d6ee325",
-                            ConcurrencyStamp = "c08edc34-fd6d-41e0-9b40-fe7903c88201",
+                            Id = "92b7ec58-5ff7-410d-8b68-adc62cba7a5c",
+                            ConcurrencyStamp = "bebec5a7-46df-41a4-80eb-c39e964aff6e",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "c450926c-aee2-4928-990e-6ffb0b47a4ee",
-                            ConcurrencyStamp = "53e6f6d5-2bb4-46ff-93cf-d91350f31727",
+                            Id = "a0118f06-5e5f-4c79-84d5-cc822d062716",
+                            ConcurrencyStamp = "353a0271-f3f3-4b21-8a1b-38bca0405307",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

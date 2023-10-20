@@ -399,3 +399,27 @@
 2023-10-20 02:03:21.1956 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
 2023-10-20 02:03:21.2599 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
 2023-10-20 02:03:21.3243 Info Configuration initialized.
+2023-10-20 16:52:05.7494 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-20 16:52:05.8397 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
+2023-10-20 16:52:05.8715 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
+2023-10-20 16:52:05.9020 Info Configuration initialized.
+2023-10-20 16:52:08.2752 Info AppDomain Shutting down. LogFactory closing...
+2023-10-20 16:52:08.3021 Info LogFactory has been closed.
+2023-10-20 16:52:14.8375 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-20 16:52:14.8716 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
+2023-10-20 16:52:14.9035 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
+2023-10-20 16:52:14.9353 Info Configuration initialized.
+2023-10-20 16:52:17.6227 Info AppDomain Shutting down. LogFactory closing...
+2023-10-20 16:52:17.6389 Info LogFactory has been closed.
+2023-10-20 16:52:33.2634 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-20 16:52:33.2915 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
+2023-10-20 16:52:33.3098 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
+2023-10-20 16:52:33.3261 Info Configuration initialized.
+2023-10-20 16:52:36.2008 Info AppDomain Shutting down. LogFactory closing...
+2023-10-20 16:52:36.2278 Info LogFactory has been closed.
+2023-10-20 16:53:06.1262 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-10-20 16:53:06.1557 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.4.2092. Product version: 5.2.4+5ed75b125a691ce9f01e64641f1a79f438385847. GlobalAssemblyCache: False
+2023-10-20 16:53:06.1766 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Sercan\source\repos\BookStoreApp\BookStoreWebApi\nlog.config
+2023-10-20 16:53:06.1992 Info Configuration initialized.
+2023-10-20 16:53:12.5928 Info AppDomain Shutting down. LogFactory closing...
+2023-10-20 16:53:12.6127 Info LogFactory has been closed.
