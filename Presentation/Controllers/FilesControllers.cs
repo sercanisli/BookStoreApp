@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace Presentation.Controllers
 {
@@ -14,32 +15,20 @@ namespace Presentation.Controllers
             {
                 return BadRequest();
             }
-            //folder
 
             var folder = Path.Combine(Directory.GetCurrentDirectory(), "Media");
-            //combine birden çok parametreyi birleştirir.
-            //Uygulamanın mevcut klasörünü alıyoum Media klasörünü alıyorum burada bir path oluşturmuş oldum
 
-            if (!Directory.Exists(folder)) //bir yol yok ise yol oluşturucaz;
+            if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
             }
 
-            //path
             var path = Path.Combine(folder, file?.FileName);
-            //dosya adını vermke için FileName deriz o isimi dosyanın oluşması için
 
-
-            //stream
-            //maliyetli işlemler olduğu için using;
-            //using bloğu içerisinde kaynaklar kullanılır daha sonrasında serbest bırakılır.
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }
-            //FileStrem nesnesi 10 farklı şekilde kullanılabilir.
-            //biz burada bir path vericez, daha sonra FileMode alanı geldi bu demek oluyor ki ben bunu okuyacak mıyım yazacak mıyım?
-            //async olarak çalışır
 
             return Ok(new
             {
@@ -47,7 +36,21 @@ namespace Presentation.Controllers
                 path = path,
                 size= file.Length
             });
-            //bir dosya kopyalama işlemi yapıldığı için anonim bir nesne tanımı olarak yapıyorum burada
+        }
+
+        [HttpGet("download")]
+        public async Task<IActionResult> Download(string fileName)
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Media", fileName);
+
+            var provider = new FileExtensionContentTypeProvider();
+
+            if(!provider.TryGetContentType(fileName, out var contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+            var bytes = await System.IO.File.ReadAllBytesAsync(filePath);
+            return File(bytes, contentType, Path.GetFileName(filePath));
         }
     }
 }
